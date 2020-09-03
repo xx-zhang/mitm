@@ -23,7 +23,7 @@ RUN wget -qO  /get-pip.py https://bootstrap.pypa.io/get-pip.py && \
 
 RUN git clone https://github.com/mitmproxy/mitmproxy && \
     cd mitmproxy && pip3 install -r requirements.txt --index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    python3 setup.py install && cd .. && rm -rf .
+    python3 setup.py install && cd .. && rm -rf mitmproxy
 
 # TODO 安装插件依赖的包
 ADD . /mitm/addons
