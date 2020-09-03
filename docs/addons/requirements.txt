@@ -1,0 +1,5 @@
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+kafka-python==2.0.1
+redis==3.5.3
+PyYAML==5.1
