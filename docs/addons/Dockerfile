@@ -10,7 +10,7 @@ RUN wget -qO  /get-pip.py https://bootstrap.pypa.io/get-pip.py && \
         && apk update \
         && apk add tzdata \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-        && apk add --no-cache bash \
+        && apk add --no-cache bash git curl \
             libxml2-dev  libffi libxml2 libxslt libxslt-dev libjpeg-turbo-dev \
             python3 gcc g++ python3-dev linux-headers libffi-dev openssl-dev \
         && python3 /get-pip.py \
