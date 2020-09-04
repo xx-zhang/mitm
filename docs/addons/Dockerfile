@@ -27,7 +27,7 @@ RUN git clone https://github.com/mitmproxy/mitmproxy && \
 
 # TODO 安装插件依赖的包
 ADD . /mitm/addons
-RUN pip3 install /mitm/addons/requirements.txt
+RUN pip3 install -r /mitm/addons/requirements.txt
 
 VOLUME /usr/src/app/
 VOLUME /mitm/addons
