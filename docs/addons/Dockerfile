@@ -1,12 +1,13 @@
 FROM alpine:latest
 
 MAINTAINER xx-zhang <actanble@gmail.com>
+ENV LANG en_US.UTF-8
 WORKDIR /usr/src/app
 ENV ADDON_PATH /mitm/addons
 
-# 设置alpine的镜像地址为阿里云的地址
+# 设置alpine的镜像地址为阿里云的地址 3.10->3.9
 RUN wget -qO  /get-pip.py https://bootstrap.pypa.io/get-pip.py && \
-    echo "https://mirrors.aliyun.com/alpine/v3.10/main/" > /etc/apk/repositories \
+    echo "https://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories \
         && apk update \
         && apk add tzdata \
         && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
@@ -23,7 +24,7 @@ RUN wget -qO  /get-pip.py https://bootstrap.pypa.io/get-pip.py && \
 
 RUN git clone https://github.com/mitmproxy/mitmproxy && \
     cd mitmproxy && pip3 install -r requirements.txt --index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    python3 setup.py install && cd .. && rm -rf mitmproxy
+    python3 setup.py install && cd .. && rm -rf .
 
 # TODO 安装插件依赖的包
 ADD . /mitm/addons
@@ -34,7 +35,7 @@ VOLUME /mitm/addons
 
 USER root
 
-CMD ['/usr/local/bin/mitmproxy  \
+CMD ['/usr/bin/mitmproxy  \
     --listen-port 63333  \
     --listen-host 0.0.0.0  \
     -k \
